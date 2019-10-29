@@ -7,10 +7,10 @@ class noise:
     def dotGridGradient(self, ix, iy, x, y):
         dx = x - ix
         dy = y - iy
-
         return dx * self.gradients[iy][ix][0] + dy * self.gradients[iy][ix][1]
 
     def __init__(self, x, y):
+        x, y = math.ceil(x) + 1, math.ceil(y) + 1
         self.gradients = []
         for j in range(y):
             self.gradients.append([])
@@ -26,7 +26,7 @@ class noise:
         x1 = x0 + 1
         y0 = int(y)
         y1 = y0 + 1
-
+        
         sx = x - x0
         sy = y - y0
 

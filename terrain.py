@@ -3,27 +3,27 @@ import perlin
 
 ############ Display variables
 
-scale = 7
-distance = 40
+scale = 8
+distance = 100
 
 ############ Land size
 
-width = 100
-length = 50
+width = 100 # map width
+length = 50 # map length
 
 ############ Noise variables
 
-noise1 = perlin.noise(width, length) # landmass / mountains
-noise2 = perlin.noise(width, length) # boulders
-noise3 = perlin.noise(width, length) # rocks
-
 n1div = 20 # landmass distribution
 n2div = 3 # boulder distribution
-n3div = 2 # rock distribution
+n3div = 1 # rock distribution
 
 n1scale = 20 # landmass height
-n2scale = 3 # boulder scale
+n2scale = 2 # boulder scale
 n3scale = 1 # rock scale
+
+noise1 = perlin.noise(width / n1div, length / n1div) # landmass / mountains
+noise2 = perlin.noise(width / n2div, length / n2div) # boulders
+noise3 = perlin.noise(width / n3div, length / n3div) # rocks
 
 ############ 3D shapes
 
@@ -43,9 +43,11 @@ def color(a, b, c): # check land type
 
 for x in range(-int(width/2), int(width/2)):
     for y in range(-int(length/2), int(length/2)):
-        z = noise1.perlin((x + width/2) / n1div, (y + width/2) / n1div) * n1scale # add landmass
-        z += noise2.perlin((x + width/2) / n2div, (y + width/2) / n2div) * n2scale # add boulders
-        z += noise3.perlin((x + width/2) / n3div, (y + width/2) / n3div) * n3scale # add rocks
+        x1 = x + width/2 
+        y1 = y + length/2
+        z = noise1.perlin(x1 / n1div, y1 / n1div) * n1scale # add landmass
+        z += noise2.perlin(x1 / n2div, y1 / n2div) * n2scale # add boulders
+        z += noise3.perlin(x1 / n3div, y1 / n3div) * n3scale # add rocks
         points.append([x, y, -z if z <= 0 else 0]) 
 
 for x in range(width):
