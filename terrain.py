@@ -84,14 +84,4 @@ world = graphics.engine.Engine3D(points, triangles, scale=scale, distance=distan
 
 world.rotate('x', -30)
 world.render()
-
-'''
-def animate():
-    world.clear()
-    world.rotate('x', 30)
-    world.rotate('z', 0.1)
-    world.rotate('x', -30)
-    world.render()
-    world.screen.window.after(1, animate)
-animate()
-'''
+world.screen.window.mainloop()
