@@ -14,13 +14,13 @@ length = 100 # map length
 
 ############ Noise variables
 
-n1div = 30# landmass distribution
-n2div = 5 # boulder distribution
-n3div = 0.5 # rock distribution
+n1div = 30 # landmass distribution
+n2div = 4 # boulder distribution
+n3div = 1 # rock distribution
 
-n1scale = 30 # landmass height
-n2scale = 3 # boulder scale
-n3scale = 2 # rock scale
+n1scale = 20 # landmass height
+n2scale = 2 # boulder scale
+n3scale = 0.5 # rock scale
 
 noise1 = perlin.noise(width / n1div, length / n1div) # landmass / mountains
 noise2 = perlin.noise(width / n2div, length / n2div) # boulders
@@ -36,8 +36,8 @@ zpower = 2.5
 colors = {
     0: 'blue',
     1: 'yellow',
-    25: 'green',
-    30: 'gray',
+    20: 'green',
+    25: 'gray',
     1000: 'white'
     }
 
@@ -80,7 +80,7 @@ for x in range(width):
 
 ############
 
-world = graphics.engine.Engine3D(points, triangles, scale=scale, distance=distance, width=1400, height=750)
+world = graphics.engine.Engine3D(points, triangles, scale=scale, distance=distance, width=1400, height=750, title='Terrain')
 
 world.rotate('x', -30)
 world.render()

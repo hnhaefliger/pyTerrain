@@ -3,23 +3,31 @@ import graphics.face
 import graphics.vertex
 
 class Engine3D:
-    def __init__(self, points, triangles, width=1000, height=700, distance=6, scale=100):
+    def writePoints(self, points):
+        self.points = []
+        for point in points:
+            self.points.append(graphics.vertex.Vertex(point))
+            
+    def writeTriangles(self, triangles):
+        self.triangles = []
+        for triangle in triangles:
+            if len(triangle) != 4:
+                triangle.append('gray')
+            self.triangles.append(graphics.face.Face(triangle))
+            
+    def __init__(self, points, triangles, width=1000, height=700, distance=6, scale=100, title='3D', background='white'):
         #object parameters
         self.distance = distance
         self.scale = scale
 
         #initialize display
-        self.screen = graphics.screen.Screen(width, height)
+        self.screen = graphics.screen.Screen(width, height, title, background)
 
         #store coordinates
-        self.points = []
-        for point in points:
-            self.points.append(graphics.vertex.Vertex(point))
+        self.writePoints(points)
 
         #store faces
-        self.triangles = []
-        for triangle in triangles:
-            self.triangles.append(graphics.face.Face(triangle))
+        self.writeTriangles(triangles)
 
     def clear(self):
         #clear display
