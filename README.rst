@@ -13,4 +13,4 @@ Current features:
 
 Future features:
 
-- Terrain generation with simplex and other noises
+- Terrain generation with simplex and other noises.
